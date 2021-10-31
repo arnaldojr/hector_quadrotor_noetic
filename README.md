@@ -1,30 +1,52 @@
-## hector_quadrotor ported to ROS Noetic with Gazebo 11
+## Guia de como rodar o hector_quadrotor no ROS Noetic com Gazebo 11
 
-***# First version, please tell me the issues or help me to fix it #***
+***Este guia foi adaptado do link: https://github.com/RAFALAMAO/hector_quadrotor_noetic.git***
 
-I take part of this from:`https://bitbucket.org/theconstructcore/hector_quadrotor_sim/src/master/`
+1. Primeiramente vamos acessar o nosso workspace ROS e clonar alguns repositórios, abra um novo terminal e digite:
 
-1. You need to have this packages before install hector_quadrotor_noetic.
-* unique_identifier (Melodic version works):
-`git clone https://github.com/ros-geographic-info/unique_identifier.git`
-* geographic_info:
-`git clone https://github.com/ros-geographic-info/geographic_info`
+    cd ~/catkin_ws/src
+    git clone https://github.com/ros-geographic-info/unique_identifier.git
+    git clone https://github.com/ros-geographic-info/geographic_info
+    cd ~/catkin_ws
+    catkin_make
 
-2. Buid
-* `cd ~/catkin_ws`
-* `catkin_make`
+2. É esperado que a compilação ocorra com sucesso. Verifique no log do terminal se ocorreu tudo bem.
+3. Vamos clonar e compilar o repositório do drone e compilar com o ROS. 
 
-3. Then clone hector_quadrotor_noetic.
-* `git clone https://github.com/RAFALAMAO/hector_quadrotor_noetic.git`
+    cd ~/catkin_ws/src
+    git clone https://github.com/RAFALAMAO/hector_quadrotor_noetic.git
+    cd ~/catkin_ws
+    catkin_make
 
-4. Repeat step 2
+4. Da mesma forma é esperado que a compilação ocorra com sucesso. Verifique no log do terminal se ocorreu tudo bem.
 
-5. Run a simulation by executing a launch file in "hector_quadrotor_gazebo" and "hector_quadrotor_demo" package (only this works at the momment, but you can try the other ones):
+5. Rode o mapa do simulador ***Gazebo*** e ***RViz*** através do comando:
+   
+    roslaunch hector_quadrotor_demo outdoor_flight_gazebo.launch`
 
-* `roslaunch hector_quadrotor_gazebo quadrotor_empty_world.launch`
-* `roslaunch hector_quadrotor_demo outdoor_flight_gazebo.launch`
+6. Você pode escolher outros mapas para rodar no simulador, pesquise os mapas disponiveis em "hector_quadrotor_demo" e "hector_quadrotor_gazebo".
 
-6. You can control it with teleop_twist_keyboard
-* `git clone https://github.com/ros-teleop/teleop_twist_keyboard`
+7. Hora de Voa! Para controlar o ***takeoff*** e ***land*** Abra um novo terminal e digite: 
 
-😊
+    roslaunch takeoff_land takeoff_land.launch
+
+8. ***takeoff*** e ***land*** Abra um novo terminal e digite:
+
+    takeoff (decolar) - rostopic pub --once /takeoff std_msgs/Empt
+    land (pousar) -  rostopic pub --once /land std_msgs/Empty 
+  
+9. Para teleoperar o drone atraves do teclado: 
+  
+   ***Apenas clone o repositório se ainda não tiver ele clonado em seu workspace***
+    cd ~/catkin_ws/src
+    git clone https://github.com/ros-teleop/teleop_twist_keyboard
+    cd ~/catkin_ws
+    catkin_make
+    
+    Rode em um novo terminal: 
+    
+    rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+10. Note que para abrir a camerá o nome do tópico é:
+
+11. Agora é com você. Rode seu código python no drone.
