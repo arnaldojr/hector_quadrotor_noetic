@@ -38,6 +38,7 @@
 9. Para teleoperar o drone atraves do teclado: 
   
    ***Apenas clone o repositório se ainda não tiver ele clonado em seu workspace***
+   
     cd ~/catkin_ws/src
     git clone https://github.com/ros-teleop/teleop_twist_keyboard
     cd ~/catkin_ws
