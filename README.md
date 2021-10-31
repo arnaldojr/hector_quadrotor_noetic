@@ -2,6 +2,17 @@
 
 ***Este guia foi adaptado do link: https://github.com/RAFALAMAO/hector_quadrotor_noetic.git***
 
+### Para instalar automaticamente os pacotes para o drone Hector abra um terminal e rode: 
+
+        cd /tmp
+        wget https://raw.githubusercontent.com/arnaldojr/hector_quadrotor_noetic/main/install_hector_drone.sh
+        chmod a+x install_hector_drone.sh
+        ./install_hector_drone.sh
+        
+#### Após a instalação pule para o passo 5.
+
+### OU execute cada etapa separadamente, seguindo os passos abaixo.
+
 1. Primeiramente vamos acessar o nosso workspace ROS e clonar alguns repositórios, abra um novo terminal e digite:
 
         cd ~/catkin_ws/src
